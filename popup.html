@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="popup.css">
+  </head>
+  <body style="text-align: center;">
+    <nav class="navbar navbar-light bg-light">
+      <span><strong>BLT</strong> (Brecht's little tracker)</span>
+    </nav>
+    <div class="container">
+      <div class="header"></div>
+      <div class="body">
+        <div class="container">
+          <div class="counter_container rounded-circle">
+            <h1 class="counter">
+            <span id="counter" ></span>
+            </h1>
+          </div>
+        </div>
+        <div class="footer">
+          <div class="input-group btn_group">
+            <button class="btn btn-outline-success" id="inc"><i class="material-icons">add</i></button>
+          </div>
+          <div class="input-group btn_group">
+            <textarea class="form-control" aria-label="With textarea" id="comments"></textarea>
+            <button class="btn btn-link btn-sm btn-grey" id="savecomments">Save Comments</button>
+          </div>
+          <div class="input-group btn_group">
+            <button class="btn btn-link fl" id="ul"><i class="material-icons">cloud_upload</i></button>
+            <button class="btn btn-link fl" id="dl"><i class="material-icons">cloud_download</i></button>
+            <button class="btn btn-link fl" id="dec"><i class="material-icons">undo</i></button>
+            <button class="btn btn-link fl" id="clear"><i class="material-icons">clear</i></button>
+            <button class="btn btn-link fl" id="menu"><i class="material-icons">menu</i></button>
+          </div>
+          <div id="menu-hidden">
+            <input type="text" class="form-control" placeholder="Webhook Destination" id="webhook_destination">
+            <button type="button" class="btn btn-outline-secondary" id="save_zap">Save</button>
+          </div>
+
+        </div>
+        <script src="ext.js"></script>
+      </body>
+    </html>
