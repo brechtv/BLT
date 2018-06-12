@@ -24,28 +24,28 @@ window.addEventListener("load", render)
 function inc1() {
     chrome.storage.sync.get("counter", function(data) {
         ("counter" in data ? set(data["counter"] + 1) : set(1))
-    });
+    })
     incdone()
 }
 
 function inc2() {
     chrome.storage.sync.get("counter", function(data) {
         ("counter" in data ? set(data["counter"] + 2) : set(1))
-    });
+    })
     incdone()
 }
 
 function inc5() {
     chrome.storage.sync.get("counter", function(data) {
         ("counter" in data ? set(data["counter"] + 5) : set(1))
-    });
+    })
     incdone()
 }
 
 function inc10() {
     chrome.storage.sync.get("counter", function(data) {
         ("counter" in data ? set(data["counter"] + 10) : set(1))
-    });
+    })
     incdone()
 }
 
@@ -53,7 +53,7 @@ function incdone() {
     var sc_arr = ["Another one!", "There we go!", "Hurray!", "One more!", "Yee-haw", "Bring em on!",
         "Crazy talk!", "MOAR", "Hold the phone!", "Da-yum!", "Ludicrous", "Are you crazy?"
     ]
-    var msg = sc_arr[Math.floor(Math.random() * sc_arr.length)];
+    var msg = sc_arr[Math.floor(Math.random() * sc_arr.length)]
     showAlert(msg, "alert-smurf")
 }
 
@@ -208,7 +208,7 @@ function sendHook() {
             var response = xhr.responseText
             console.log(response)
             if (xhr.status === 200) {
-                showAlert("[SUCCESS] Synced to " + $webhook_destination.value, "alert-smurf");
+                showAlert("[SUCCESS] Synced to " + $webhook_destination.value, "alert-smurf")
                 clear()
             } else {
                 showAlert("[FAILED] Something went wrong. Check your webhook destination.", "alert-smurf")
