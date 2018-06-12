@@ -21,22 +21,52 @@ document.getElementById("save_zap").addEventListener("click", save_webhook_desti
 
 window.addEventListener("load", render)
 
-function inc1() {chrome.storage.sync.get("counter", function(data) {("counter" in data ? set(data["counter"] + 1) : set(1)) }); incdone()}
-function inc2() {chrome.storage.sync.get("counter", function(data) {("counter" in data ? set(data["counter"] + 2) : set(1)) }); incdone()}
-function inc5() {chrome.storage.sync.get("counter", function(data) {("counter" in data ? set(data["counter"] + 5) : set(1)) }); incdone()}
-function inc10() {chrome.storage.sync.get("counter", function(data) {("counter" in data ? set(data["counter"] + 10) : set(1)) }); incdone()}
+function inc1() {
+    chrome.storage.sync.get("counter", function(data) {
+        ("counter" in data ? set(data["counter"] + 1) : set(1))
+    });
+    incdone()
+}
+
+function inc2() {
+    chrome.storage.sync.get("counter", function(data) {
+        ("counter" in data ? set(data["counter"] + 2) : set(1))
+    });
+    incdone()
+}
+
+function inc5() {
+    chrome.storage.sync.get("counter", function(data) {
+        ("counter" in data ? set(data["counter"] + 5) : set(1))
+    });
+    incdone()
+}
+
+function inc10() {
+    chrome.storage.sync.get("counter", function(data) {
+        ("counter" in data ? set(data["counter"] + 10) : set(1))
+    });
+    incdone()
+}
+
 function incdone() {
     var sc_arr = ["Another one!", "There we go!", "Hurray!", "One more!", "Yee-haw", "Bring em on!",
-                  "Crazy talk!", "MOAR", "Hold the phone!", "Da-yum!", "Ludicrous", "Are you crazy?"]
-    var msg = sc_arr[Math.floor(Math.random()*sc_arr.length)];
-    showAlert(msg, "alert-smurf")}
+        "Crazy talk!", "MOAR", "Hold the phone!", "Da-yum!", "Ludicrous", "Are you crazy?"
+    ]
+    var msg = sc_arr[Math.floor(Math.random() * sc_arr.length)];
+    showAlert(msg, "alert-smurf")
+}
 
 function dec() {
-   chrome.storage.sync.get("counter", function(data) { ("counter" in data ? set(data["counter"] - 1) : set(1)) })
+    chrome.storage.sync.get("counter", function(data) {
+        ("counter" in data ? set(data["counter"] - 1) : set(1))
+    })
 }
 
 function add(value) {
-    chrome.storage.sync.get("counter", function(data) { ("counter" in data ? set(data["counter"] + value) : set(1)) })
+    chrome.storage.sync.get("counter", function(data) {
+        ("counter" in data ? set(data["counter"] + value) : set(1))
+    })
 }
 
 function clear() {
@@ -44,62 +74,86 @@ function clear() {
         set(0)
         clear_comments()
         showAlert("[SUCCESS] All clear", "alert-smurf")
-    } catch(err) {
+    } catch (err) {
         showAlert("[FAILED] Uh oh. Something went wrong." + err, "alert-smurf")
     }
 }
 
 function set(e) {
-    e<0 ? e=0 : 999<e && (e=999), chrome.storage.sync.set({"counter":e},function(){render()})
+    e < 0 ? e = 0 : 999 < e && (e = 999), chrome.storage.sync.set({
+        "counter": e
+    }, function() {
+        render()
+    })
 }
 
 function render() {
-    chrome.storage.sync.get("counter",function(e) {
+    chrome.storage.sync.get("counter", function(e) {
         $counter.innerText = ("counter" in e ? e.counter : 0)
-        if($counter.innerText != 0) {
-            chrome.browserAction.setBadgeText({text:$counter.innerText})
-            chrome.browserAction.setBadgeBackgroundColor({color:"red"})
+        if ($counter.innerText != 0) {
+            chrome.browserAction.setBadgeText({
+                text: $counter.innerText
+            })
+            chrome.browserAction.setBadgeBackgroundColor({
+                color: "red"
+            })
         } else {
-            chrome.browserAction.setBadgeText({text:"0"})
-            chrome.browserAction.setBadgeBackgroundColor({color:"green"})
+            chrome.browserAction.setBadgeText({
+                text: "0"
+            })
+            chrome.browserAction.setBadgeBackgroundColor({
+                color: "green"
+            })
         }
     })
 
-    chrome.storage.sync.get("comments",function(e) {
+    chrome.storage.sync.get("comments", function(e) {
         $comments.value = ("comments" in e ? e.comments : "")
     })
 
-    chrome.storage.sync.get("asker",function(e) {
+    chrome.storage.sync.get("asker", function(e) {
         $asker.value = ("asker" in e ? e.asker : "")
     })
 
-    chrome.storage.sync.get("webhook_destination",function(e) {
+    chrome.storage.sync.get("webhook_destination", function(e) {
         $webhook_destination.value = ("webhook_destination" in e ? e.webhook_destination : "")
     })
 
-    if($webhook_destination === "") {document.getElementById("ul").disabled = true}
+    if ($webhook_destination === "") {
+        document.getElementById("ul").disabled = true
+    }
 }
 
 function save_comments() {
     try {
-        chrome.storage.sync.set({ "comments": $comments.value })
-        chrome.storage.sync.set({ "asker": $asker.value })
+        chrome.storage.sync.set({
+            "comments": $comments.value
+        })
+        chrome.storage.sync.set({
+            "asker": $asker.value
+        })
         showAlert("[SUCCESS] Saved comments", "alert-smurf")
-    } catch(err) {
+    } catch (err) {
         showAlert("[SUCCESS] Uh oh. Something went wrong" + err, "alert-smurf")
     }
 }
 
 function clear_comments() {
-    chrome.storage.sync.set({ "comments": "" })
-    chrome.storage.sync.set({ "asker": "" })
+    chrome.storage.sync.set({
+        "comments": ""
+    })
+    chrome.storage.sync.set({
+        "asker": ""
+    })
 }
 
 function save_webhook_destination() {
     try {
-    chrome.storage.sync.set({ "webhook_destination": $webhook_destination.value })
-    showAlert("[SUCCESS] Saved webhook destination.", "alert-smurf")
-    } catch(err) {
+        chrome.storage.sync.set({
+            "webhook_destination": $webhook_destination.value
+        })
+        showAlert("[SUCCESS] Saved webhook destination.", "alert-smurf")
+    } catch (err) {
         showAlert("[FAILED] Uh oh. Something went wrong." + err, "alert-smurf")
     }
 }
@@ -123,16 +177,16 @@ function content_for_dl(format) {
 
 function dl() {
     try {
-    var content = content_for_dl("csv")
-    var element = document.createElement('a')
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content))
-    element.setAttribute('download', "qTrack_export.csv")
-    element.style.display = 'none'
-    document.body.appendChild(element)
-    element.click()
-    document.body.removeChild(element)
-    showAlert("[SUCCESS] File ready for download.", "alert-smurf")
-    } catch(err) {
+        var content = content_for_dl("csv")
+        var element = document.createElement('a')
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content))
+        element.setAttribute('download', "qTrack_export.csv")
+        element.style.display = 'none'
+        document.body.appendChild(element)
+        element.click()
+        document.body.removeChild(element)
+        showAlert("[SUCCESS] File ready for download.", "alert-smurf")
+    } catch (err) {
         showAlert("[FAILED] Could not download file." + err, "alert-smurf")
     }
 }
@@ -141,8 +195,8 @@ function dl() {
 function sendHook() {
     save_comments()
     var content = content_for_dl("json")
-
-    if($webhook_destination.value == "") {
+    console.log(content)
+    if ($webhook_destination.value == "") {
         showAlert("[FAILED] No webhook destination set.", "alert-smurf")
         return
     }
@@ -150,12 +204,16 @@ function sendHook() {
     var xhr = new XMLHttpRequest()
     xhr.open('POST', $webhook_destination.value)
     xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4) {
-        var response = xhr.responseText
-        console.log(response)
-          if (xhr.status === 200) {showAlert("[SUCCESS] Synced to " + $webhook_destination.value, "alert-smurf"); clear()}
-          else {showAlert("[FAILED] Something went wrong. Check your webhook destination.", "alert-smurf")}
-      }
+        if (xhr.readyState === 4) {
+            var response = xhr.responseText
+            console.log(response)
+            if (xhr.status === 200) {
+                showAlert("[SUCCESS] Synced to " + $webhook_destination.value, "alert-smurf");
+                clear()
+            } else {
+                showAlert("[FAILED] Something went wrong. Check your webhook destination.", "alert-smurf")
+            }
+        }
     }
     xhr.send(content)
 }
@@ -181,9 +239,15 @@ function showAlert(msg, classname) {
 
 function getDateFormatted() {
     var today = new Date()
-    var dd = today.getDate(), mm = today.getMonth() + 1, yyyy = today.getFullYear()
-    if (dd < 10) {dd = '0' + dd}
-    if (mm < 10) {mm = '0' + mm}
+    var dd = today.getDate(),
+        mm = today.getMonth() + 1,
+        yyyy = today.getFullYear()
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+    if (mm < 10) {
+        mm = '0' + mm
+    }
     var today = yyyy + "-" + mm + "-" + dd
     return today
 }
@@ -202,4 +266,8 @@ function getTimeFormatted() {
     return now
 }
 
-chrome.commands.onCommand.addListener(function (command) {if (command === "sync") {sendHook()}})
+chrome.commands.onCommand.addListener(function(command) {
+    if (command === "sync") {
+        sendHook()
+    }
+})
