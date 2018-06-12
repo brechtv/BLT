@@ -146,6 +146,12 @@ function dl() {
 function sendHook() {
     save_comments()
     var content = content_for_dl("json")
+
+    if($webhook_destination.value == "") {
+        showAlert("No destination set!", "alert-smurf")
+        return
+    }
+
     var xhr = new XMLHttpRequest()
     xhr.open('POST', $webhook_destination.value)
     xhr.onreadystatechange = function() {
@@ -182,7 +188,7 @@ function showAlert(msg, classname) {
         success_alert.style.display = "none"
         success_alert.classList.remove(classname)
         document.getElementsByTagName("body")[0].style.height = "60px"
-        }, 1000)
+        }, 1500)
 }
 
 chrome.commands.onCommand.addListener(function (command) {if (command === "sync") {sendHook()}})
