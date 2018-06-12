@@ -14,7 +14,8 @@ body {
   padding: 0px;
   width: 400px;
   height: 60px;
-  color: #656565;
+  color: #F5F5F5;
+  background-color: #5b5d4f;
 }
 
 h1 {
@@ -27,7 +28,7 @@ h1 {
 
 button#inc {
   color: #fff;
-  background-color: #60BD68;
+  /* background-color: #60BD68; */
   width: 100%;
 }
 
@@ -35,6 +36,28 @@ button.fl {
   float: left;
   color: #959595;
   width: 20%;
+}
+
+button.bl {
+  float: left;
+  width: 25%;
+  color: #A6E22E;
+}
+
+#comments {
+    background-color: #272822;
+    border: 1px solid #000;
+    color: #A6E22E;
+    padding: 8px;
+    font-family: Consolas, monaco, monospace;
+}
+
+#asker {
+      background-color: #272822;
+    border: 1px solid #000;
+    color: #A6E22E;
+    padding: 8px;
+    font-family: Consolas, monaco, monospace;
 }
 
 .btn-grey {
@@ -52,7 +75,7 @@ button.fl {
 }
 
 .counter_container {
-  background-color: #F5F5F5;
+  background-color: #4f5145;
   width: 140px;
   height: 140px;
   margin: 0 auto;
@@ -63,13 +86,41 @@ button.fl {
 .counter {
   line-height: 32px;
   padding-top: 33%;
-  color: #656565;
-}
-
-#menu-hidden {
-  display: none;
+  color: #FD971F;
 }
 
 #save_zap {
   margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.footer {
+  height: 100px;
+  background-color: #272822;
+}
+
+.form-group {
+  width: 100%;
+}
+
+.navbar {
+  background-color: transparent;
+}
+
+.container {
+  padding: 0px
+}
+
+.content_container {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#menu-hidden {
+  padding: 10px;
+}
+
+.alert-smurf {
+  background-color: transparent;
+  border: 0px;
 }

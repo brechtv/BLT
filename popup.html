@@ -3,41 +3,46 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" type="text/css" href="popup.css">
   </head>
+  <nav class="navbar">
+    <span><strong>BLT</strong></span>
+  </nav>
   <body style="text-align: center;">
-    <nav class="navbar navbar-light bg-light">
-      <span><strong>BLT</strong> (Brecht's little tracker)</span>
-    </nav>
     <div class="container">
-      <div class="header"></div>
-      <div class="body">
-        <div class="container">
-          <div class="counter_container rounded-circle">
-            <h1 class="counter">
-            <span id="counter" ></span>
-            </h1>
-          </div>
+      <div class="content_container">
+        <div class="counter_container rounded-circle">
+          <h1 class="counter">
+          <span id="counter" ></span>
+          </h1>
         </div>
-        <div class="footer">
-          <div class="input-group btn_group">
-            <button class="btn btn-outline-success" id="inc"><i class="material-icons">add</i></button>
-          </div>
-          <div class="input-group btn_group">
-            <textarea class="form-control" aria-label="With textarea" id="comments"></textarea>
-            <button class="btn btn-link btn-sm btn-grey" id="savecomments">Save Comments</button>
-          </div>
-          <div class="input-group btn_group">
-            <button class="btn btn-link fl" id="ul"><i class="material-icons">cloud_upload</i></button>
-            <button class="btn btn-link fl" id="dl"><i class="material-icons">cloud_download</i></button>
-            <button class="btn btn-link fl" id="dec"><i class="material-icons">undo</i></button>
-            <button class="btn btn-link fl" id="clear"><i class="material-icons">clear</i></button>
-            <button class="btn btn-link fl" id="menu"><i class="material-icons">menu</i></button>
-          </div>
-          <div id="menu-hidden">
-            <input type="text" class="form-control" placeholder="Webhook Destination" id="webhook_destination">
-            <button type="button" class="btn btn-outline-secondary" id="save_zap">Save</button>
-          </div>
-
+        <div class="input-group btn_group">
+          <button class="btn btn-link bl" id="inc1"><i class="material-icons">add</i>1</button>
+          <button class="btn btn-link bl" id="inc2"><i class="material-icons">add</i>2</button>
+          <button class="btn btn-link bl" id="inc5"><i class="material-icons">add</i>5</button>
+          <button class="btn btn-link bl" id="inc10"><i class="material-icons">add</i>10</button>
         </div>
-        <script src="ext.js"></script>
-      </body>
-    </html>
+        <div class="input-group btn_group">
+          <div class="form-group"><textarea class="form-control" placeholder="Comments" id="comments"></textarea></div>
+          <div class="form-group"><input type="text" class="form-control" placeholder="Asked by" id="asker" autocomplete="on"></div>
+          <button class="btn btn-link btn-sm btn-grey" id="savecomments">Save Comments</button>
+        </div>
+      </div>
+      <div class="input-group btn_group">
+        <button class="btn btn-link fl" id="ul"><i class="material-icons">cloud_upload</i></button>
+        <button class="btn btn-link fl" id="dl"><i class="material-icons">cloud_download</i></button>
+        <button class="btn btn-link fl" id="dec"><i class="material-icons">undo</i></button>
+        <button class="btn btn-link fl" id="clear"><i class="material-icons">clear</i></button>
+        <button class="btn btn-link fl" id="menu"><i class="material-icons">menu</i></button>
+      </div>
+      <div class="footer">
+        <div id="menu-hidden" style="display: none;">
+          <input type="text" class="form-control" placeholder="Webhook Destination" id="webhook_destination">
+          <button type="button" class="btn btn-outline-secondary" id="save_zap">Save</button>
+        </div>
+        <div class="alert" role="alert" id="status_alert" style="display: none;">
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="ext.js"></script>
+</body>
+</html>

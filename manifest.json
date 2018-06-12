@@ -1,11 +1,14 @@
 {
   "manifest_version": 2,
-  "name": "qTrack",
-  "description": "qTrack",
+  "name": "BLT",
+  "description": "BLT",
   "version": "1.0",
   "browser_action": {
     "default_popup": "popup.html",
-    "default_title": "qTrack"
+    "default_title": "BLT",
+    "default_icon": {
+            "32": "favicon32.png"
+          }
   },
   "permissions": [
     "storage"
