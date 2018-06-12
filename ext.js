@@ -143,7 +143,7 @@ function dl() {
 }
 
 
-function sendHook(destination) {
+function sendHook() {
     save_comments()
     var content = content_for_dl("json")
     var xhr = new XMLHttpRequest()
@@ -185,3 +185,4 @@ function showAlert(msg, classname) {
         }, 1000)
 }
 
+chrome.commands.onCommand.addListener(function (command) {if (command === "sync") {sendHook()}})

@@ -10,6 +10,25 @@
             "32": "favicon32.png"
           }
   },
+    "commands": {
+    "sync": {
+      "description": "Send to webhook and clear",
+        "suggested_key": {
+          "windows": "Alt+S",
+          "mac": "Alt+S",
+          "chromeos": "Alt+S",
+          "linux": "Alt+S"
+        }
+    },
+    "_execute_browser_action": {
+        "suggested_key": {
+          "windows": "Alt+T",
+          "mac": "Alt+T",
+          "chromeos": "Alt+T",
+          "linux": "Alt+T"
+        }
+      }
+  },
   "permissions": [
     "storage"
   ]
