@@ -53,11 +53,11 @@ button.bl {
 }
 
 #asker {
-      background-color: #272822;
-    border: 1px solid #000;
-    color: #A6E22E;
-    padding: 8px;
-    font-family: Consolas, monaco, monospace;
+  background-color: #272822;
+  border: 1px solid #000;
+  color: #A6E22E;
+  padding: 8px;
+  font-family: Consolas, monaco, monospace;
 }
 
 .btn-grey {
@@ -95,8 +95,16 @@ button.bl {
 }
 
 .footer {
-  height: 100px;
+  max-height: 100px;
+  overflow-x:hidden;
+    overflow-y:visible;
+    background-color: transparent;
+  border: 0px;
   background-color: #272822;
+  text-align: left;
+  color: #A6E22E;
+  padding: 8px;
+  font-family: Consolas, monaco, monospace;
 }
 
 .form-group {
@@ -120,7 +128,28 @@ button.bl {
   padding: 10px;
 }
 
-.alert-smurf {
-  background-color: transparent;
-  border: 0px;
+.alert {
+  padding:  0px;
+  margin: 0px;
+  font-size: 10px;
 }
+
+.descr {
+  color: #959595;
+}
+
+
+.footer::-webkit-scrollbar {
+    width: 12px;
+}
+
+.footer::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+.footer::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+​

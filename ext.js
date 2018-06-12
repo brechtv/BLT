@@ -43,9 +43,9 @@ function clear() {
     try {
         set(0)
         clear_comments()
-        showAlert("All clear!", "alert-smurf")
+        showAlert("[SUCCESS] All clear", "alert-smurf")
     } catch(err) {
-        showAlert("Uh oh. Something went wrong." + err, "alert-smurf")
+        showAlert("[FAILED] Uh oh. Something went wrong." + err, "alert-smurf")
     }
 }
 
@@ -84,9 +84,9 @@ function save_comments() {
     try {
         chrome.storage.sync.set({ "comments": $comments.value })
         chrome.storage.sync.set({ "asker": $asker.value })
-        showAlert("Saved comments!", "alert-smurf")
+        showAlert("[SUCCESS] Saved comments", "alert-smurf")
     } catch(err) {
-        showAlert("Uh oh. Something went wrong." + err, "alert-smurf")
+        showAlert("[SUCCESS] Uh oh. Something went wrong" + err, "alert-smurf")
     }
 }
 
@@ -98,20 +98,15 @@ function clear_comments() {
 function save_webhook_destination() {
     try {
     chrome.storage.sync.set({ "webhook_destination": $webhook_destination.value })
-    showAlert("Saved webhook destination!", "alert-smurf")
+    showAlert("[SUCCESS] Saved webhook destination.", "alert-smurf")
     } catch(err) {
-        showAlert("Uh oh. Something went wrong." + err, "alert-smurf")
+        showAlert("[FAILED] Uh oh. Something went wrong." + err, "alert-smurf")
     }
 }
 
 function content_for_dl(format) {
     var content
-    var today = new Date()
-    var dd = today.getDate(), mm = today.getMonth() + 1, yyyy = today.getFullYear()
-    if (dd < 10) {dd = '0' + dd}
-    if (mm < 10) {mm = '0' + mm}
-    var today = yyyy + "-" + mm + "-" + dd
-
+    var today = getDateFormatted()
     if (format == "csv") {
         content = `date,count,asker,comments\n`
         content += today + "," + $counter.innerText + "," + $asker.value + "," + $comments.value
@@ -136,9 +131,9 @@ function dl() {
     document.body.appendChild(element)
     element.click()
     document.body.removeChild(element)
-    showAlert("File ready for download!", "alert-smurf")
+    showAlert("[SUCCESS] File ready for download.", "alert-smurf")
     } catch(err) {
-        showAlert("Uh oh. Something went wrong." + err, "alert-smurf")
+        showAlert("[FAILED] Could not download file." + err, "alert-smurf")
     }
 }
 
@@ -148,7 +143,7 @@ function sendHook() {
     var content = content_for_dl("json")
 
     if($webhook_destination.value == "") {
-        showAlert("No destination set!", "alert-smurf")
+        showAlert("[FAILED] No webhook destination set.", "alert-smurf")
         return
     }
 
@@ -158,12 +153,11 @@ function sendHook() {
       if (xhr.readyState === 4) {
         var response = xhr.responseText
         console.log(response)
-          if (xhr.status === 200) {showAlert("Synced", "alert-smurf")}
-          else {showAlert("Something went wrong! Check your webhook destination.", "alert-smurf")}
+          if (xhr.status === 200) {showAlert("[SUCCESS] Synced to " + $webhook_destination.value, "alert-smurf"); clear()}
+          else {showAlert("[FAILED] Something went wrong. Check your webhook destination.", "alert-smurf")}
       }
     }
     xhr.send(content)
-    clear()
 }
 
 function toggleMenu() {
@@ -176,19 +170,36 @@ function toggleMenu() {
 }
 
 function showAlert(msg, classname) {
-    var success_alert = document.getElementById("status_alert")
-    success_alert.innerText = msg
-    success_alert.classList.add(classname)
-    success_alert.style.display = "block"
+    var s = document.getElementsByClassName("footer")[0]
 
-    var menu = document.getElementById("menu-hidden")
-    menu.style.display = "none"
+    var x = document.createElement("div")
+    x.classList.add("alert")
+    x.innerText = getTimeFormatted() + " " + msg
+    s.appendChild(x)
+    s.scrollTop = s.scrollHeight
+}
 
-    setTimeout(function(){
-        success_alert.style.display = "none"
-        success_alert.classList.remove(classname)
-        document.getElementsByTagName("body")[0].style.height = "60px"
-        }, 1500)
+function getDateFormatted() {
+    var today = new Date()
+    var dd = today.getDate(), mm = today.getMonth() + 1, yyyy = today.getFullYear()
+    if (dd < 10) {dd = '0' + dd}
+    if (mm < 10) {mm = '0' + mm}
+    var today = yyyy + "-" + mm + "-" + dd
+    return today
+}
+
+function getTimeFormatted() {
+    var now = new Date()
+    var hr = now.getHours()
+    var min = now.getMinutes()
+    if (min < 10) {
+        min = "0" + min
+    }
+    if (hr < 10) {
+        hr = "0" + hr
+    }
+    now = hr + ":" + min
+    return now
 }
 
 chrome.commands.onCommand.addListener(function (command) {if (command === "sync") {sendHook()}})
