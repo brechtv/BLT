@@ -30,6 +30,6 @@ button.bl { float: left; width: 25%; color: #A6E22E; }
 .footer::-webkit-scrollbar-track { -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); border-radius: 10px; }
 .footer::-webkit-scrollbar-thumb { border-radius: 10px; -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5); }
 #comments { background-color: #272822; border: 1px solid #000; color: #A6E22E; padding: 8px; font-family: Consolas, monaco, monospace; }
-#asker { background-color: #272822; border: 1px solid #000; color: #A6E22E; padding: 8px; font-family: Consolas, monaco, monospace; }
+#task { background-color: #272822; border: 1px solid #000; color: #A6E22E; padding: 8px; font-family: Consolas, monaco, monospace; }
 #menu-hidden { padding: 10px; }
 #save_zap { margin-top: 10px; margin-bottom: 10px; }
